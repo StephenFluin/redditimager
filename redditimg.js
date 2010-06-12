@@ -3,9 +3,11 @@ function fixImages(rep) {
 	list = list.parent();
 	for(i = 0;i<list.length;i++) {
 		var url = list[i].href;
-		list[i].innerHTML = '<img src="' + url + '"/>';
-		list[i].style["overflow"] = "inherit";
-		list[i].style["z-index"] = "4000";
+		if(url.substr(-4,4) == ".jpg") {
+			list[i].innerHTML = '<img src="' + url + '" style="max-width:100%;z-index:4000;"/>';
+			list[i].style["overflow"] = "inherit";
+			list[i].style["width"] = "inherit";
+		}
 	}
-	list.length;
+	//console.log("Completed fixing images for " + rep + " (found " + list.length + ")");
 }fixImages("imgur");fixImages("i.imgur");
