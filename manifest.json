@@ -1,0 +1,13 @@
+{
+  "name": "Reddit Imager",
+  "description": "An extension for lazy redditors, view images on the article lists directly.",
+  "version": "1.0",
+  "icons": {"128":"icon128.png","48":"icon48.png"},
+  "content_scripts": [
+    {
+      "matches": ["http://www.reddit.com/*"],
+      "js": ["jquery.min.js","redditimg.js"]
+    }
+  ],
+  "permissions": ["http://www.reddit.com/*"]
+}
