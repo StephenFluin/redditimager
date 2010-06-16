@@ -7,6 +7,9 @@
 
 	switch(request.action) {
 		case "check_options":
+			if(!localStorage["options"]) {
+				localStorage["options"] = "[]";
+			}
 			var opts = JSON.parse(localStorage["options"]);
 			
 			
