@@ -1,0 +1,62 @@
+<html>
+<head><title>CSS Destyler Options</title>
+<script type="text/javascript">
+
+
+var opts;
+function set_options(options) {
+	chrome.extension.sendRequest({action:"set_options","options":options}, function(response) {});
+	restore_options(options);
+}
+function get_options() {
+	chrome.extension.sendRequest({action:"get_options"}, function(response) {
+	if(response.options) {
+		options = response.options;
+		restore_options(options);
+		opts = options;
+		
+	}
+	});
+}
+
+
+// Restores select box state to saved value from localStorage.
+function restore_options(options) {
+	
+	var list = document.getElementById("options");
+	list.innerHTML = "";
+	list.innerHTML = '<select id="mode"><option>Normal</option><option>Activated</option></select>';
+	var mode = document.getElementById('mode');
+	mode.onchange = save;
+	if (!options || options.length == 0) {
+		console.log("no options");
+		
+		return;
+	} else {
+		if(options["mode"] == "Activated") {
+			mode.selectedIndex=1;
+		}
+	}
+}
+function save() {
+	var mode = document.getElementById("mode");
+	var opts = {"mode":mode.value};
+	set_options(opts);
+	console.log(opts);
+}
+
+
+</script>
+</head>
+<body onload="get_options()">
+<h1>Reddit Imager Options</h1>
+<h2>Choose your mode:</h2>
+<div id="options">
+</div>
+<h2>Modes</h2>
+<p><strong>Normal</strong> - Images on the Reddit homepage and subreddit homepages are automatically maximized.</p>
+<p><strong>Activated</strong> - Images on the Reddit homepage and subreddit homepages are only maximized when clicked on.</p>
+<p><em>Settings are automatically saved when you change your mode.</em></p>
+<br/><br/>
+</body>
+</html>
