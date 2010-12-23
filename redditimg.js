@@ -1,10 +1,15 @@
 function fix(element) {
 	if(element) {
 		var url = element.href;
-		if(url.substr(-4,4) == ".jpg" || url.substr(-4,4) == ".png" || url.substr(-4,4) == ".gif") {
+		if(url.length == 22) {
+			url = url + ".jpg";
+		}
+		if(url.substr(-4,4) == ".jpg" || url.substr(-4,4) == ".png" || url.substr(-4,4) == ".gif" | url.substr(-5,5) == ".jpeg") {
 			element.innerHTML = '<img src="' + url + '" style="max-width:100%;z-index:4000;"/>';
 			element.style["overflow"] = "inherit";
 			element.style["width"] = "inherit";
+		} else {
+			console.log("couldn't match an image in the url: " + url);
 		}
 	} else {
 		console.error("Reddit Imager extension tried to hook up something that doesn't make sense.");
