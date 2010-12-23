@@ -1,7 +1,7 @@
 function fix(element) {
 	if(element) {
 		var url = element.href;
-		if(url.substr(-4,4) == ".jpg") {
+		if(url.substr(-4,4) == ".jpg" || url.substr(-4,4) == ".png" || url.substr(-4,4) == ".gif") {
 			element.innerHTML = '<img src="' + url + '" style="max-width:100%;z-index:4000;"/>';
 			element.style["overflow"] = "inherit";
 			element.style["width"] = "inherit";
