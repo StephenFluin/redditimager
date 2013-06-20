@@ -5,7 +5,7 @@ function fix(element) {
 		if(url.length == 22) {
 			url = url + ".jpg";
 		}
-		if(url.substr(-4,4) == ".jpg" || url.substr(-4,4) == ".png" || url.substr(-4,4) == ".gif" || url.substr(-5,5) == ".jpeg" || url.length == "24") {
+		if(url.substr(-4,4) == ".jpg" || url.substr(-4,4) == ".png" || url.substr(-4,4) == ".gif" || url.substr(-5,5) == ".jpeg" ) {
 			element.innerHTML = '<img src="' + url + '" style="max-width:100%;z-index:4000;"/>';
 			element.style["overflow"] = "inherit";
 			element.style["width"] = "inherit";
